@@ -1,0 +1,188 @@
+/* ===============================
+   ROOT & GLOBAL IMPROVEMENTS
+================================ */
+
+:root {
+    --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-fast: 0.3s;
+    --transition-medium: 0.6s;
+}
+
+/* Improve font rendering */
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better focus visibility */
+:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 3px;
+}
+
+/* ===============================
+   FADE & REVEAL ANIMATIONS
+================================ */
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+    transition:
+        opacity var(--transition-medium) var(--ease-smooth),
+        transform var(--transition-medium) var(--ease-smooth);
+    will-change: opacity, transform;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+/* Delay Utilities */
+.delay-100 {
+    transition-delay: 0.1s;
+}
+.delay-200 {
+    transition-delay: 0.2s;
+}
+.delay-300 {
+    transition-delay: 0.3s;
+}
+.delay-500 {
+    transition-delay: 0.5s;
+}
+
+/* ===============================
+   GRADIENT BACKGROUND ANIMATION
+================================ */
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientMove 10s var(--ease-smooth) infinite;
+}
+
+/* ===============================
+   SOFT PULSE EFFECT (Premium Glow)
+================================ */
+
+@keyframes pulseSlow {
+    0% {
+        transform: scale(1);
+        opacity: 0.18;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.28;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.18;
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulseSlow 8s var(--ease-smooth) infinite;
+    will-change: transform, opacity;
+}
+
+/* ===============================
+   NAVBAR IMPROVEMENTS
+================================ */
+
+.nav-scrolled {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: background var(--transition-fast) var(--ease-standard);
+}
+
+/* ===============================
+   BUTTON MICRO INTERACTIONS
+================================ */
+
+.btn-hover {
+    transition: all var(--transition-fast) var(--ease-standard);
+}
+
+.btn-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(99, 102, 241, 0.25);
+}
+
+/* ===============================
+   CARD HOVER EFFECT
+================================ */
+
+.card-hover {
+    transition:
+        transform var(--transition-fast) var(--ease-standard),
+        box-shadow var(--transition-fast) var(--ease-standard);
+}
+
+.card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ===============================
+   REDUCED MOTION SUPPORT
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ===============================
+   SMOOTH LINK UNDERLINE (Professional Touch)
+================================ */
+
+.nav-link {
+    position: relative;
+    transition: color var(--transition-fast) var(--ease-standard);
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #6366f1;
+    transition: width var(--transition-fast) var(--ease-standard);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
